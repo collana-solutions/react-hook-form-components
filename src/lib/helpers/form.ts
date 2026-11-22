@@ -1,7 +1,7 @@
 ﻿import { ReactNode } from "react";
 import { FieldPath, FieldValues } from "react-hook-form";
 import { RequiredFieldPath } from "../types/Form";
-import { isNullOrWhitespace } from "@neolution-ch/javascript-utils";
+import { isNullOrWhitespace } from "@collana-solutions/javascript-utils";
 
 const matchesWildcard = (rule: string, pathParts: string[]) => {
   const ruleParts = rule.split(".");

@@ -172,7 +172,7 @@ const DatePickerInput = <T extends FieldValues>(props: DatePickerInputProps<T>) 
               internalDatePickerRef.current = elem as DatePickerDefault;
 
               if (datePickerRef) {
-                datePickerRef.current = elem as DatePickerDefault;
+                datePickerRef.current = elem;
               }
             }}
             onBlur={(e) => {

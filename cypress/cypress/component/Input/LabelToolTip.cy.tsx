@@ -6,14 +6,14 @@ import { mount } from "cypress/react";
 
 it("label tooltip gets rendered correctly", () => {
   const name = faker.random.alpha(10);
-  const labelToolTip = faker.random.alpha(30);
+  const labelTooltip = faker.random.alpha(30);
   const schema = yup.object().shape({
     [name]: yup.string(),
   });
 
   mount(
     <Form onSubmit={cy.spy().as("onSubmitSpy")} resolver={yupResolver(schema)}>
-      <Input name={name} label={name} labelToolTip={labelToolTip} />
+      <Input name={name} label={name} labelToolTip={labelTooltip} />
 
       <input type={"submit"} />
     </Form>,
@@ -21,5 +21,5 @@ it("label tooltip gets rendered correctly", () => {
 
   cy.get(`#Tooltip-${name}`).trigger("mouseover");
   cy.get("div.tooltip").should("be.visible");
-  cy.get("div.tooltip").should("have.text", labelToolTip);
+  cy.get("div.tooltip").should("have.text", labelTooltip);
 });

@@ -4,7 +4,7 @@ import { Country, getCountriesOptions, getCountryFromCountryCode } from "../../h
 import { TelephoneNumberInputProps } from "../../TelephoneNumberInput";
 import { LabelValueOption } from "../../types/LabelValueOption";
 import { RegionCode } from "google-libphonenumber";
-import { isNullOrWhitespace } from "@neolution-ch/javascript-utils";
+import { isNullOrWhitespace } from "@collana-solutions/javascript-utils";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useFormContext } from "../../context/FormContext";
 import { PopupState } from "material-ui-popup-state/hooks";

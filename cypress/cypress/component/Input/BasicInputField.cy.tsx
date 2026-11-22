@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { InputGroupText } from "@neolution-ch/reactstrap";
+import { InputGroupText } from "@collana-solutions/reactstrap";
 import { useRef } from "react";
 import { mount } from "cypress/react";
 
@@ -449,7 +449,7 @@ describe("Input.cy.tsx", () => {
       </Form>,
     );
 
-    cy.get(`label[for=${name}]`).parent().find("svg[data-icon=pencil]");
+    cy.get(`label[for=${name}]`).parent().find("svg[data-icon=pencil]").should("exist");
   });
 });
 

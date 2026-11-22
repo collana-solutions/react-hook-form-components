@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { faCalendar, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { InputGroupText } from "@neolution-ch/reactstrap";
+import { InputGroupText } from "@collana-solutions/reactstrap";
 import { fetchMock, generateOptions } from "../../helpers/typeahead";
 import { mount } from "cypress/react";
 
@@ -38,7 +38,7 @@ it("contains pencil icon and inputGroup has correct style", () => {
     </Form>,
   );
 
-  cy.get(`label[for=${name}]`).parent().find("svg[data-icon=pencil]");
+  cy.get(`label[for=${name}]`).parent().find("svg[data-icon=pencil]").should("exist");
   cy.get(".input-group").should("have.attr", "style", style);
 });
 
@@ -76,7 +76,7 @@ it("contains calendar icon and inputGroup has correct style", () => {
     </Form>,
   );
 
-  cy.get(`label[for=${name}]`).parent().find("svg[data-icon=calendar]");
+  cy.get(`label[for=${name}]`).parent().find("svg[data-icon=calendar]").should("exist");
   cy.get(".input-group").should("have.attr", "style", style);
 });
 
@@ -107,7 +107,7 @@ it("async typeahead input contains pencil icon and inputGroup has correct style"
     </Form>,
   );
 
-  cy.get(`label[for=${name}]`).parent().find("svg[data-icon=pencil]");
+  cy.get(`label[for=${name}]`).parent().find("svg[data-icon=pencil]").should("exist");
   cy.get("div.MuiAutocomplete-root").should("have.attr", "style", customStyle);
 });
 
@@ -138,6 +138,6 @@ it("static typeahead input contains pencil icon and inputGroup has correct style
     </Form>,
   );
 
-  cy.get(`label[for=${name}]`).parent().find("svg[data-icon=pencil]");
+  cy.get(`label[for=${name}]`).parent().find("svg[data-icon=pencil]").should("exist");
   cy.get("div.MuiAutocomplete-root").should("have.attr", "style", customStyle);
 });

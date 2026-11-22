@@ -182,9 +182,7 @@ const getOptionsFromValue = (
     if (withFixedOptionsInValue) {
       // If fixed options available and should be included in the value, always add all of them and make sure they are unique (distinct)
       finalOptions = combineOptions(fixedOptions, finalOptions as TypeaheadOptions);
-      finalOptions = finalOptions?.filter(
-        (option, i, options) => options.findIndex((o) => compareOptions(o, option)) === i,
-      ) as TypeaheadOptions;
+      finalOptions = finalOptions?.filter((option, i, options) => options.findIndex((o) => compareOptions(o, option)) === i);
     } else {
       // If fixed options available but should not be included in the value, filter them out
       finalOptions = finalOptions?.filter((option) => !fixedOptions.some((fixedOption) => compareOptions(fixedOption, option)));

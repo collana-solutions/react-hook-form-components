@@ -1,6 +1,6 @@
 import { useFormContext } from "./context/FormContext";
 import { FieldPath, FieldValues } from "react-hook-form";
-import { Label, UncontrolledTooltip } from "@neolution-ch/reactstrap";
+import { Label, UncontrolledTooltip } from "@collana-solutions/reactstrap";
 import { getRequiredLabel } from "./helpers/form";
 import type { FormGroupLayoutProps } from "./FormGroupLayout";
 

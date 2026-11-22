@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { faCalendar, faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, InputGroupText } from "@neolution-ch/reactstrap";
+import { Button, InputGroupText } from "@collana-solutions/reactstrap";
 import { mount } from "cypress/react";
 
 import { SinonSpy } from "cypress/types/sinon";
@@ -147,8 +147,8 @@ it("contains calendar icon if provided in DateInput", () => {
     </Form>,
   );
 
-  cy.get(`label[for=${name}]`).parent().find("svg[data-icon=calendar]");
-  cy.get(`label[for=${name}]`).parent().find("svg[data-icon=clock]");
+  cy.get(`label[for=${name}]`).parent().find("svg[data-icon=calendar]").should("exist");
+  cy.get(`label[for=${name}]`).parent().find("svg[data-icon=clock]").should("exist");
 });
 
 it("not contains calendar icon if not provided in DateInput", () => {

@@ -1,4 +1,4 @@
-import { isNullOrWhitespace } from "@neolution-ch/javascript-utils";
+import { isNullOrWhitespace } from "@collana-solutions/javascript-utils";
 import { PhoneNumberUtil, RegionCode, RegionCodeUnknown } from "google-libphonenumber";
 import { getName, langs } from "i18n-iso-countries";
 import { LabelValueOption } from "../types/LabelValueOption";

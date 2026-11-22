@@ -1,5 +1,5 @@
 import { FieldValues, get, FieldError } from "react-hook-form";
-import { Input } from "@neolution-ch/reactstrap";
+import { Input } from "@collana-solutions/reactstrap";
 import { useSafeNameId } from "src/lib/hooks/useSafeNameId";
 import { InputProps } from "../../Input";
 import { useMarkOnFocusHandler } from "../../hooks/useMarkOnFocusHandler";

@@ -1,7 +1,7 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react-webpack5";
 import { Form, DatePickerInput, DatePickerInputProps } from "../../src";
-import { Button } from "@neolution-ch/reactstrap";
+import { Button } from "@collana-solutions/reactstrap";
 
 export default {
   title: "Components",
@@ -28,7 +28,7 @@ DatePickerExample.args = {
   name: "name",
   label: "DatePickerInput Label",
   disabled: false,
-} as DatePickerInputProps<FormInterface>;
+};
 DatePickerExample.decorators = [
   (StoryComponent) => (
     // eslint-disable-next-line react/jsx-no-useless-fragment

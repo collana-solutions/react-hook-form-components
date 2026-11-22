@@ -12,3 +12,9 @@ allowBuilds:
 # Same supply-chain floor as the root workspace: reject versions younger than 14 days.
 minimumReleaseAge: 20160
 minimumReleaseAgeStrict: true
+
+# Our own packages skip the waiting period. They publish only through trusted publishing
+# or by a maintainer with 2FA, so a fresh version is not the unknown the floor guards against,
+# and a library that depends on another one of ours can take its release right away.
+minimumReleaseAgeExclude:
+  - "@collana-solutions/*"

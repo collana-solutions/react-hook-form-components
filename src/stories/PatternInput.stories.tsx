@@ -1,7 +1,7 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react-webpack5";
 import { Form, FormattedInput, FormattedInputProps } from "../../src";
-import { Button } from "@neolution-ch/reactstrap";
+import { Button } from "@collana-solutions/reactstrap";
 
 export default {
   title: "Components",
@@ -31,7 +31,7 @@ PatternInputExample.args = {
     thousandSeparator: "'",
   },
   disabled: false,
-} as FormattedInputProps<FormInterface>;
+};
 PatternInputExample.decorators = [
   (StoryComponent) => (
     // eslint-disable-next-line react/jsx-no-useless-fragment

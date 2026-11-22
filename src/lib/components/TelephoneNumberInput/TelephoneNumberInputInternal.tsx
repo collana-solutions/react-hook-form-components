@@ -10,7 +10,7 @@ import { TelephoneNumberInputProps } from "../../TelephoneNumberInput";
 import { getRequiredLabel } from "../../helpers/form";
 import { Country, extractCountryCodeFromTelephoneNumber, extractNationalNumberFromTelephoneNumber } from "../../helpers/telephoneNumber";
 import { TelephoneNumberInputAdornment } from "./TelephoneNumberInputAdornment";
-import { isNullOrWhitespace } from "@neolution-ch/javascript-utils";
+import { isNullOrWhitespace } from "@collana-solutions/javascript-utils";
 import { TelephoneNumberAutocomplete } from "./TelephoneNumberAutocomplete";
 
 const TelephoneNumberInputInternal = <T extends FieldValues>(props: TelephoneNumberInputProps<T>) => {
@@ -62,12 +62,12 @@ const TelephoneNumberInputInternal = <T extends FieldValues>(props: TelephoneNum
   const finalLabel = useMemo(() => getRequiredLabel<T>(label, name, requiredFields), [label, name, requiredFields]);
 
   // we need to control the country in the case the value inside the form is undefined
-  const [country, setCountry] = useState<Country>(extractCountryCodeFromTelephoneNumber(field.value as string | undefined, defaultCountry));
+  const [country, setCountry] = useState<Country>(extractCountryCodeFromTelephoneNumber(field.value, defaultCountry));
   const resetCountry = useRef(true);
 
   useEffect(() => {
     if (resetCountry.current) {
-      setCountry(extractCountryCodeFromTelephoneNumber(field.value as string | undefined, defaultCountry));
+      setCountry(extractCountryCodeFromTelephoneNumber(field.value, defaultCountry));
     }
     resetCountry.current = true;
   }, [defaultCountry, field.value]);

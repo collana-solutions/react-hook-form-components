@@ -14,8 +14,7 @@ const config: StorybookConfig = {
         ...(config.resolve.plugins || []),
         new TsconfigPathsPlugin({
           extensions: config.resolve.extensions,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        }) as any,
+        }),
       ];
     }
     return config;

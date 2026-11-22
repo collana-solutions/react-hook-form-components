@@ -1,6 +1,6 @@
 import { FieldValues } from "react-hook-form";
-import { FormGroup, Label } from "@neolution-ch/reactstrap";
-import { InputType } from "@neolution-ch/reactstrap/types/lib/Input";
+import { FormGroup, Label } from "@collana-solutions/reactstrap";
+import { InputType } from "@collana-solutions/reactstrap/types/lib/Input";
 import { useSafeNameId } from "src/lib/hooks/useSafeNameId";
 import { FormGroupLayout } from "./FormGroupLayout";
 import { InputInternal } from "./components/Input/InputInternal";
@@ -87,7 +87,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
       throw new Error("minlength must be less than or equal to maxlength");
     }
   }
-  if (autoComplete && (type === "checkbox" || type === "file" || type === "radio" || type === "range" || type === "switch")) {
+  if (autoComplete && type && ["checkbox", "file", "radio", "range", "switch"].includes(type)) {
     throw new Error("autoComplete can only be used with text, numeric or select inputs");
   }
 
