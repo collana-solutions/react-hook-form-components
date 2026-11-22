@@ -68,7 +68,7 @@
     "react-datepicker": "^8.0.0",
     "react-number-format": "^5.4.4",
     "use-debounce": "^10.0.5",
-    "uuid": "^11.1.0"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
