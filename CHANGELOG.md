@@ -1,5 +1,24 @@
 # @collana-solutions/react-hook-form-components
 
+## 5.0.0
+
+### Major Changes
+
+- [#177](https://github.com/collana-solutions/react-hook-form-components/pull/177) [`6c9ff97`](https://github.com/collana-solutions/react-hook-form-components/commit/6c9ff97bce121bfa463130965c2646bde1bd836e) Thanks [@neotrow](https://github.com/neotrow)! - The peer dependency `@neolution-ch/reactstrap` is now `@collana-solutions/reactstrap` (`^10.0.1`). The components, their API and the styles are unchanged. Apps install reactstrap themselves, so replace the old package with the new one. Your app and these components then share one copy of reactstrap:
+  
+  ```shell
+  npm uninstall @neolution-ch/reactstrap
+  npm install @collana-solutions/reactstrap
+  ```
+  
+  Then change the reactstrap imports in your own code:
+  
+  ```js
+  import { Button, InputGroupText } from "@collana-solutions/reactstrap";
+  ```
+  
+  The dependency `@neolution-ch/javascript-utils` is replaced by `@collana-solutions/javascript-utils` 2.6.1. It is installed with this package, so there is nothing to change for it.
+
 ## 4.5.1
 
 ### Patch Changes
