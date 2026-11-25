@@ -41,7 +41,6 @@ const AsyncTypeaheadInput = <T extends FieldValues>(props: AsyncTypeaheadInputPr
     innerRef,
     multiple,
     disabled,
-    variant,
     label,
     labelToolTip,
     helpText,
@@ -190,17 +189,19 @@ const AsyncTypeaheadInput = <T extends FieldValues>(props: AsyncTypeaheadInputPr
           field.onBlur();
         }}
         onChange={(_e, value) => {
-          // value is typed as Autocomplete<Value> (aka TypeaheadOption) or an array of Autocomplete<Value> (aka TypeaheadOption[])
-          // however, the component is not intended to be used with mixed types
-          const optionsArray = getOptionsFromValue(value, fixedOptions, withFixedOptionsInValue);
-          setValue(optionsArray ?? []);
-          const values = convertAutoCompleteOptionsToStringArray(optionsArray);
-          const finalValue = multiple ? values : values[0];
-          if (onChange) {
-            const finalOption = multiple ? optionsArray : optionsArray?.at(0);
-            onChange(finalValue, finalOption);
-          }
-          field.onChange(finalValue);
+          void (async () => {
+            // value is typed as Autocomplete<Value> (aka TypeaheadOption) or an array of Autocomplete<Value> (aka TypeaheadOption[])
+            // however, the component is not intended to be used with mixed types
+            const optionsArray = getOptionsFromValue(value, fixedOptions, withFixedOptionsInValue);
+            setValue(optionsArray ?? []);
+            const values = convertAutoCompleteOptionsToStringArray(optionsArray);
+            const finalValue = multiple ? values : values[0];
+            field.onChange(finalValue);
+            if (onChange) {
+              const finalOption = multiple ? optionsArray : optionsArray?.at(0);
+              await onChange(finalValue, finalOption);
+            }
+          })();
         }}
         onInputChange={(_e, query, reason) => {
           if (reason === "blur" || reason === "clear" || (reason === "selectOption" && !autocompleteProps?.disableCloseOnSelect)) {
@@ -209,9 +210,12 @@ const AsyncTypeaheadInput = <T extends FieldValues>(props: AsyncTypeaheadInputPr
           } else if (reason === "input") {
             setDebounceSearch({ delay, query });
           }
-          if (onInputChange) {
-            onInputChange(query, reason);
-          }
+
+          void (async () => {
+            if (onInputChange) {
+              await onInputChange(query, reason);
+            }
+          })();
         }}
         renderOption={highlightOptions ? renderHighlightedOptionFunction : undefined}
         renderInput={(params) => (
@@ -231,7 +235,6 @@ const AsyncTypeaheadInput = <T extends FieldValues>(props: AsyncTypeaheadInputPr
             placeholder={multiple && value.length > 0 ? undefined : placeholder}
             paginationIcon={paginationIcon}
             paginationText={paginationText}
-            variant={variant}
             limitResults={limitResults}
             loadMoreOptions={loadMoreOptions}
             setPage={setPage}

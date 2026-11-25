@@ -34,7 +34,6 @@ const StaticTypeaheadInput = <T extends FieldValues>(props: StaticTypeaheadInput
     options,
     multiple,
     disabled,
-    variant,
     label,
     labelToolTip,
     helpText,
@@ -161,22 +160,26 @@ const StaticTypeaheadInput = <T extends FieldValues>(props: StaticTypeaheadInput
           field.onBlur();
         }}
         onChange={(_, value) => {
-          // value is typed as Autocomplete<Value> (aka TypeaheadOption) or an array of Autocomplete<Value> (aka TypeaheadOption[])
-          // however, the component is not intended to be used with mixed types
-          const optionsArray = getOptionsFromValue(value, fixedOptions, withFixedOptionsInValue);
-          const values = convertAutoCompleteOptionsToStringArray(optionsArray);
-          const finalValue = multiple ? values : values[0];
-          clearErrors(field.name);
-          if (onChange) {
-            const finalOption = multiple ? optionsArray : optionsArray?.at(0);
-            onChange(finalValue, finalOption);
-          }
-          field.onChange(finalValue);
+          void (async () => {
+            // value is typed as Autocomplete<Value> (aka TypeaheadOption) or an array of Autocomplete<Value> (aka TypeaheadOption[])
+            // however, the component is not intended to be used with mixed types
+            const optionsArray = getOptionsFromValue(value, fixedOptions, withFixedOptionsInValue);
+            const values = convertAutoCompleteOptionsToStringArray(optionsArray);
+            const finalValue = multiple ? values : values[0];
+            clearErrors(field.name);
+            field.onChange(finalValue);
+            if (onChange) {
+              const finalOption = multiple ? optionsArray : optionsArray?.at(0);
+              await onChange(finalValue, finalOption);
+            }
+          })();
         }}
         onInputChange={(_e, value, reason) => {
-          if (onInputChange) {
-            onInputChange(value, reason);
-          }
+          void (async () => {
+            if (onInputChange) {
+              await onInputChange(value, reason);
+            }
+          })();
         }}
         renderOption={highlightOptions ? renderHighlightedOptionFunction : undefined}
         renderInput={(params) => (
@@ -196,7 +199,6 @@ const StaticTypeaheadInput = <T extends FieldValues>(props: StaticTypeaheadInput
             placeholder={multiple && value.length > 0 ? undefined : placeholder}
             paginationIcon={paginationIcon}
             paginationText={paginationText}
-            variant={variant}
             limitResults={limitResults}
             loadMoreOptions={loadMoreOptions}
             setPage={setPage}
